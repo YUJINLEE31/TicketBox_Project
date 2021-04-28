@@ -8,6 +8,7 @@ public class dataClass {
 	int ticketCount;
 	int ticketAdvantage;
 	int menuContinue;
+	int finalContinue;
 	int age;
 	int ageGroup;
 	int ticketPrice;
@@ -26,5 +27,6 @@ public class dataClass {
 	ArrayList<Integer> list_DC_Price = new ArrayList<Integer>() ;  
 	ArrayList<Integer> list_ticketCount = new ArrayList<Integer>() ;
 	ArrayList<Integer> list_totalPrice = new ArrayList<Integer>() ;
+	
 
 }

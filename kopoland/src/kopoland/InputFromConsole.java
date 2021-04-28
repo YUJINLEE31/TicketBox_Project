@@ -13,15 +13,7 @@ public class InputFromConsole {
 	protected void finalize() { //소멸자
 		scanner.close(); //Scanner 소멸(종료)
 	}
-/*
-	public String getBookingdate() {
-		String bookingDate;
-		System.out.print("예약일을 입력하세요.(예시: 20210505)\n");
-		bookingDate = scanner.nextLine();
 	
-		return bookingDate;
-	}
-*/	
 	public int getTicketType() {
 		int ticketType;
 		do {
@@ -76,7 +68,7 @@ public class InputFromConsole {
 		} while ( !(menuContinue == ConstValue.CONTINUE || menuContinue == ConstValue.EXIT) );
 		return menuContinue;
 	}
-/*	
+	
 	public int finalgetContinue() {
 		int menuContinue;
 		do {
@@ -85,7 +77,7 @@ public class InputFromConsole {
 		} while ( !(menuContinue == ConstValue.CONTINUE || menuContinue == ConstValue.EXIT) );
 		return menuContinue;
 	}
-*/
+
 }
 
 
