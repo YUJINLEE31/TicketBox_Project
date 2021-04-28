@@ -1,12 +1,6 @@
 package kopoland;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import Hwanjeon.ConstValueClass;
-import Hwanjeon.ExchangeType;
 
 public class Main {
 

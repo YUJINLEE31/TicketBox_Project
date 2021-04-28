@@ -5,7 +5,7 @@ public class ConstValue {
 	// 권종에 따른 분류
 	final static int DAY_PRICE = 1, NIGHT_PRICE =2;
 	// 권종별 가격
-	final static int CURRENT_YEAR = 2021;
+
 	final static int BABY_PRICE = 0, 
 		CHILD_ONEDAY_PRICE = 44000, CHILD_AFTER4_PRICE = 37000,
 		TEEN_ONEDAY_PRICE = 47000, TEEN_AFTER4_PRICE = 40000, 

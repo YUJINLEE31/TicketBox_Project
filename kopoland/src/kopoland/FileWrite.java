@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import Hwanjeon.ExchangeType;
-
 public class FileWrite {
 		
 	private FileWriter fw; 
@@ -15,7 +13,7 @@ public class FileWrite {
 	
 	public FileWrite() { 	
 		try {
-			File file = new File("C:\\Users\\이유진\\Desktop\\Record the result of issuance.csv"); 
+			File file = new File("Record the result of issuance.csv"); 
 						
 			if(file.exists() == false) { //만약 해당 파일이 존재하지 않으면
 				isFileExist = false; //변수 isFileExist는 false
@@ -23,7 +21,7 @@ public class FileWrite {
 				isFileExist = true; //변수 isFileExist는 true
 			}
 			
-			fw = new FileWriter("C:\\Users\\이유진\\Desktop\\Record the result of issuance.csv", true);				
+			fw = new FileWriter("Record the result of issuance.csv", true);				
 			//FileWriter fw를 생성하고 오픈한 파일을 연결, 옵션 true는 실행할 때마다 이어쓰기, false는 덮어쓰기	 
 		
 		} catch (IOException e) {

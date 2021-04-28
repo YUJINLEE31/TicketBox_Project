@@ -11,7 +11,7 @@ public class Output {
 	public void ordrPrint(dataClass dc) {
 		System.out.println("티켓 발권을 종료합니다. 감사합니다.\n");	
 	
-		System.out.println("=====================폴리랜드======================");
+		System.out.println("==========================폴리랜드==========================");
 		
 		for (int i = 0; i < dc.list_totalPrice.size(); i++) {
 			System.out.printf("%9.9s%8.8s %3s %3s %8.8s %s %8.8s %s\n", 
@@ -21,7 +21,7 @@ public class Output {
 		}	
 		System.out.printf("\n--------------------------------------------------\n");
         System.out.printf("입장료 총액은 %d 원 입니다.\n", dc.PriceSum );
-        System.out.println("=================================================");
+        System.out.println("==========================================================");
 	}
 }
 
