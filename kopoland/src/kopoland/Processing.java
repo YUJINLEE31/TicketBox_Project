@@ -1,32 +1,27 @@
 package kopoland;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Processing {
 
 	//나이 계산
 	int calcAge (String resiNum) {
-		int OLD_GEN =190000000, NEW_GEN =200000000,
-				MALE_OLD =1, FEMALE_OLD =2, MALE_NEW =3, FEMALE =4,
-				BEFORE_BIRTH = 2, AFTER_BIRTH = 1;
-		
-		String bookingDate = "" , currentDate ="";
-		
-		int customerYear = 0, customerMonth = 0, customerDay = 0, customerType = 0,
-				bookingYear = 0, bookingMonth = 0, bookingDay = 0;
-		int iresiNum = 0, ibookingDate = 0, icurrentDate = 0, customerID9 = 0, koreanAge= 0, age = 0;
 				
+		int customerYear = 0, customerMonth = 0, customerDay = 0,
+			currentYear = 0, currentMonth = 0, currentDay = 0;
+		int customerID7 = 0, //주민등록번호 앞 7자리
+			customerID9 = 0, //9자리로 변형
+			age = 0; //만나이
+				
+		//주민등록번호로 생년월일 추출
+		customerID7 = Integer.parseInt(resiNum);
 		
-		iresiNum = Integer.parseInt(resiNum);
-		
-		if (iresiNum % 10 == MALE_OLD || iresiNum % 10 == FEMALE_OLD) {
-			customerID9 = iresiNum + OLD_GEN;
+		if (customerID7 % 10 == ConstValue.MALE_OLD || customerID7 % 10 == ConstValue.FEMALE_OLD) {
+			customerID9 = customerID7 + ConstValue.OLD_GEN;
 		} else {
-			customerID9 = iresiNum + NEW_GEN;
+			customerID9 = customerID7 + ConstValue.NEW_GEN;
 		}
 	
-		customerType = customerID9 % 10;
 		customerID9 /= 10;
 		customerDay = customerID9 % 100; 
 		customerID9 /= 100;
@@ -34,32 +29,25 @@ public class Processing {
 		customerID9 /= 100;
 		customerYear = customerID9; 
 		
-		//예약일
-//		ibookingDate = Integer.parseInt(bookingDate);
-		Calendar c = Calendar.getInstance(); 
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMdd"); 
-		currentDate = sdf.format(c.getTime());
-		icurrentDate = Integer.parseInt(currentDate);
-		bookingDay = icurrentDate % 100; 
-		icurrentDate /= 100;
-		bookingMonth = icurrentDate % 100; 
-		icurrentDate /= 100;
-		bookingYear = icurrentDate; 
+		//현재 년월일 추출
+		Calendar c = Calendar.getInstance();
+		currentYear = c.get(Calendar.YEAR);
+		currentMonth = c.get(Calendar.MONTH) + 1; //Calendar.MONTH는 1월이 0, 2월이 1이기 때문에 +1
+		currentDay = c.get(Calendar.DATE);
 		
 		//만나이 계산
-		koreanAge = bookingYear - customerYear + 1;
-		if ( (customerMonth < bookingMonth) || 
-				customerMonth == bookingMonth && customerDay <= bookingDay ) {
-			age = koreanAge - AFTER_BIRTH;
-		} else {
-			age = koreanAge - BEFORE_BIRTH;
+		if ( (customerMonth < currentMonth) || 
+				(customerMonth == currentMonth && customerDay <= currentDay) ) {
+			age = currentYear - customerYear;  //발권일이 생일 이후(생일포함)라면 그대로
+		} else {  
+			age = currentYear - customerYear - ConstValue.BEFORE_BIRTH; //생일 도래 전이면 1세를 감산
 		}
 		
 		
-		return age;		
-		
+		return age;				
 	}
 	
+	//연령구분
 	int ageGroup(dataClass dc) {
 		int ageGroup = 0;
 		if (dc.age <= ConstValue.MAX_BABY) {
@@ -75,13 +63,13 @@ public class Processing {
 			ageGroup = ConstValue.ADULT;
 			
 		} else { 
-			ageGroup = ConstValue.OLD;
-			
+			ageGroup = ConstValue.OLD;			
 		}		
 		
 		return ageGroup;
 	}
 	
+	//티켓 원가
 	int ticketPrice(dataClass dc) {
 		int ticketPrice = 0;
 		if (dc.ageGroup == ConstValue.BABY) {
@@ -136,6 +124,7 @@ public class Processing {
 		return ticketPrice;
 	}
 
+	//우대할인 적용가
 	int calcDiscout(dataClass dc) {
 		int DC_Price = 0;
 		if ( dc.ticketAdvantage == ConstValue.No_DC ) {
@@ -165,6 +154,7 @@ public class Processing {
 		return DC_Price;
 	}
 	
+	//우대할인 적용가 * 주문량
 	int calcTotalPrice(dataClass dc) {
 		int totalPrice = 0;
 		

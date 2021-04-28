@@ -31,11 +31,11 @@ public class InputFromConsole {
 			System.out.print("주민등록번호 앞 7자리를 입력하세요 (예시: 9012301)\n");
 			resiNum = scanner.next();
 						
-		} while ( resiNum.length() != 7 || resiNum.contains("-") || resiNum.contains(".") 
-				|| Integer.parseInt(resiNum.substring(2, 4)) > 12 ||
-				Integer.parseInt(resiNum.substring(4, 6)) > 31 ||
+		} while ( resiNum.length() != 7 || resiNum.contains("-") || resiNum.contains(".") || 
+				Integer.parseInt(resiNum.substring(2, 4)) > 12 || 
+				Integer.parseInt(resiNum.substring(4, 6)) > 31 || 
 				Integer.parseInt(resiNum.substring(6,7)) > 4 ||
-				Integer.parseInt(resiNum.substring(6,7)) == 0); 
+				Integer.parseInt(resiNum.substring(6,7)) == 0 ); 
 					
 		return resiNum;
 	}

@@ -13,6 +13,7 @@ public class Main {
 		Output oc = new Output();
 		FileWrite fwc =new FileWrite();
 		fwc.headerWrite();
+		
 		do {
 			do {			
 				dc.ticketType = input.getTicketType();
@@ -23,9 +24,9 @@ public class Main {
 				
 				dc.age = pc.calcAge(dc.resiNum);	
 				dc.ageGroup = pc.ageGroup(dc);					
-				dc.ticketPrice = pc.ticketPrice(dc); //낱장가격	
-				dc.DC_Price = pc.calcDiscout(dc); //낱장할인가격
-				dc.totalPrice = pc.calcTotalPrice(dc); //낱장할인가격*주문량
+				dc.ticketPrice = pc.ticketPrice(dc); //낱장 원가	
+				dc.DC_Price = pc.calcDiscout(dc); //낱장 우대할인 적용가
+				dc.totalPrice = pc.calcTotalPrice(dc); //우대할인 적용가 * 주문량
 						
 				oc.totalPricePrint(dc);
 				fwc.dataWrite(dc);
